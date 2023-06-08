@@ -23,7 +23,7 @@ pipeline {
          }
       stage('Build Docker Image and Push'){
          environment{
-            DOCKER_IMAGE = "abhishekf5/ultimate-cicd:${BUILD_NUMBER}"
+            DOCKER_IMAGE = "ci-cd-jenkins-sonar-argocd-k8s:${BUILD_NUMBER}"
             REGISTRY_CREDENTIALS = credentials('docker-cred')
          }
          steps{
