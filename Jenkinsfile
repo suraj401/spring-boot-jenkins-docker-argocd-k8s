@@ -27,7 +27,7 @@ pipeline {
             REGISTRY_CREDENTIALS = credentials('docker-cred')
          }
          steps{
-            sh'docker build -t ${DOCKER_IMAGE}'
+            sh'docker build -t ${DOCKER_IMAGE} .'
          }
       }
       }
