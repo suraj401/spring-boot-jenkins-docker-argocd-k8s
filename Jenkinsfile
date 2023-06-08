@@ -22,6 +22,9 @@ pipeline {
             }
          }
       stage('Build Docker Image and Push'){
+         environment{
+             DOCKER_IMAGE = "ci-cd-jenkins-docker-argocd-k8s:${BUILD_NUMBER}"
+         }
             steps{
             sh'docker build -t ${DOCKER_IMAGE} .'
          }
