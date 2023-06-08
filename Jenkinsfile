@@ -28,10 +28,12 @@ pipeline {
       }
       stage('Push imge to docker hub'){
          steps{
+            script{
                withCredentials([string(credentialsId: 'Docker-pwd', variable: 'docker-cred')]) {
                   sh'docker login -u supriyohub -p ${docker-cred}'
                   sh'docker push supriyohub/${DOCKER_IMAGE}'
                }
+            }
          }
       }
       }
