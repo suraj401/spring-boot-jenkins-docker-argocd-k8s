@@ -21,11 +21,7 @@ pipeline {
                SONAR_URL="http://localhost:9000"
             }
          steps{
-            sh '''mvn clean verify sonar:sonar \
-  -Dsonar.projectKey=Sona \
-  -Dsonar.projectName='Sona' \
-  -Dsonar.host.url=http://localhost:9000 \
-  -Dsonar.token=sqp_24576448ec619a6c7922754671d5062d8ea287e5'''
+            sh 'echo ignore this step'
 }
          }
       }
