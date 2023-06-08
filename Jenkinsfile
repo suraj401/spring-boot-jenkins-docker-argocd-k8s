@@ -19,8 +19,17 @@ pipeline {
       stage('Analyzing the code with SONARQUBE'){
             steps{
             sh 'echo ignore this step'
-}
+            }
          }
+      stage('Build Docker Image and Push'){
+         environment{
+            DOCKER_IMAGE = "abhishekf5/ultimate-cicd:${BUILD_NUMBER}"
+            REGISTRY_CREDENTIALS = credentials('docker-cred')
+         }
+         steps{
+            sh'docker build -t ${DOCKER_IMAGE}'
+         }
+      }
       }
    
    }
