@@ -21,8 +21,11 @@ pipeline {
                SONAR_URL="http://localhost:9000"
             }
          steps{
-            withCredentials([string(credentialsId: 'sonarqube-token', variable: 'SONAR_VARIABLE')]) {
-            sh 'mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN -Dsonar.host.url=${SONAR_URL}'
+            sh '''mvn clean verify sonar:sonar \\
+  -Dsonar.projectKey=happy \\
+  -Dsonar.projectName=\'Happy\' \\
+  -Dsonar.host.url=http://127.0.0.1:9000 \\
+  -Dsonar.token=sqp_e5857ddd8f4926e13123edd5a17a1cc068920ca1'''
 }
          }
       }
