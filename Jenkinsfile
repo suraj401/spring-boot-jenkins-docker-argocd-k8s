@@ -17,17 +17,10 @@ pipeline {
          }
       }
       stage('Analyzing the code with SONARQUBE'){
-         environment{
-               SONAR_URL="http://localhost:9000"
-            }
-         steps{
+            steps{
             sh 'echo ignore this step'
 }
          }
       }
+   
    }
-   post {
-        always {
-            cleanWs()
-        }
-}
