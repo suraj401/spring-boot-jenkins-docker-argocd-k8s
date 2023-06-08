@@ -22,18 +22,14 @@ pipeline {
             }
          }
       stage('Build Docker Image and Push'){
-         environment{
-            DOCKER_IMAGE = "ci-cd-jenkins-sonar-argocd-k8s:${BUILD_NUMBER}"
-            REGISTRY_CREDENTIALS = credentials('docker-cred')
-         }
-         steps{
+            steps{
             sh'docker build -t ${DOCKER_IMAGE} .'
          }
       }
       stage('Push imge to docker hub'){
          steps{
                withCredentials([string(credentialsId: 'Docker-pwd', variable: 'docker-cred')]) {
-                  sh 'docker login -u supriyohub -p ${docker-cred}'
+                  sh'docker login -u supriyohub -p ${docker-cred}'
                   sh'docker push supriyohub/${DOCKER_IMAGE}'
                }
          }
