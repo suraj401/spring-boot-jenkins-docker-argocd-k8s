@@ -25,7 +25,7 @@ pipeline {
       environment {
         DOCKER_IMAGE = "ci-cd-jenkins-docker-argocd-k8s:${BUILD_NUMBER}"
         // DOCKERFILE_LOCATION = "java-maven-sonar-argocd-helm-k8s/spring-boot-app/Dockerfile"
-        REGISTRY_CREDENTIALS = credentials('docker-cred's)
+        REGISTRY_CREDENTIALS = credentials('docker-creds')
       }
       steps {
         script {
