@@ -32,7 +32,7 @@ pipeline {
       }
       stage('Push imge to docker hub'){
          steps{
-                  sh'echo $DOCKER_CREDENTIALS_PSW | docker login -u $DOCKER_CREDENTIALS_USR -password --stdin'
+                  sh'echo $DOCKER_CREDENTIALS_PSW | docker login -u $DOCKER_CREDENTIALS_USR --password-stdin'
                   sh'docker push supriyohub/${DOCKER_IMAGE}'
                }
             }
