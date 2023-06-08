@@ -24,7 +24,7 @@ pipeline {
       stage('Build Docker Image and Push'){
          environment{
              DOCKER_IMAGE = "ci-cd-jenkins-docker-argocd-k8s:${BUILD_NUMBER}"
-             DOCKER_CREDENTIALS= credentials(docker-creds)
+             DOCKER_CREDENTIALS = credentials('docker-creds')
          }
             steps{
             sh'docker build -t ${DOCKER_IMAGE} .'
