@@ -24,6 +24,7 @@ pipeline {
       stage('Build Docker Image and Push'){
          environment{
              DOCKER_IMAGE = "ci-cd-jenkins-docker-argocd-k8s:${BUILD_NUMBER}"
+             DOCKER_CREDENTIALS= credentials(docker-creds)
          }
             steps{
             sh'docker build -t ${DOCKER_IMAGE} .'
@@ -31,15 +32,9 @@ pipeline {
       }
       stage('Push imge to docker hub'){
          steps{
-            script{
-               withCredentials([usernamePassword(credentialsId: 'docker-creds', passwordVariable: 'pwd', usernameVariable: 'user')]) {
-    // some block
-                     sh'docker login -u ${user} -p ${pwd}'
+                  sh'echo $DOCKER_CREDENTIALS_PSW | docker login -u $DOCKER_CREDENTIALS_USR -password --stdin'
                   sh'docker push supriyohub/${DOCKER_IMAGE}'
                }
             }
          }
       }
-      }
-   
-   }
