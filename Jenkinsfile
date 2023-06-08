@@ -30,6 +30,14 @@ pipeline {
             sh'docker build -t ${DOCKER_IMAGE} .'
          }
       }
+      stage('Push imge to docker hub'){
+         steps{
+               withCredentials([string(credentialsId: 'Docker-pwd', variable: 'docker-cred')]) {
+                  sh 'docker login -u supriyohub -p ${docker-cred}'
+                  sh'docker push supriyohub/${DOCKER_IMAGE}'
+               }
+         }
+      }
       }
    
    }
