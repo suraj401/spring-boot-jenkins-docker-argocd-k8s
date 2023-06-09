@@ -49,7 +49,8 @@ pipeline {
                     git config user.name "Supriyo Roy"
                     BUILD_NUMBER=${BUILD_NUMBER}
                     ls -lrth
-                    sed -i "s/tagname/${BUILD_NUMBER}/g" argo-config/deployment.yml
+                    cd argo-config
+                    sed -i "s/tagname/${BUILD_NUMBER}/g" deployment.yml
                     git add /argo-config/deployment.yml
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
                     git push https://${git-token}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
