@@ -37,4 +37,24 @@ pipeline {
         }
       }
     }
+    stage('Update Deployment file'){
+      environment{
+         GIT_REPO_NAME = "ci-cd-spring-boot-jenkins-docker-argocd-k8s"
+         GIT_USER_NAME = "Supriyo-Roy"
+      }
+      steps{
+         withCredentials([string(credentialsId: 'Supriyo-Roy', variable: 'git-token')]) {
+         sh '''
+              git config user.email "roysupriyoroy@gmail.com"
+                    git config user.name "Supriyo Roy"
+                    BUILD_NUMBER=${BUILD_NUMBER}
+                    sed -i "s/tagname/${BUILD_NUMBER}/g" /argo-config/deployment.yml
+                    git add j/argo-config/deployment.yml
+                    git commit -m "Update deployment image to version ${BUILD_NUMBER}"
+                    git push https://${git-token}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                '''
+}
+
+      }
+    }
       }}
