@@ -48,6 +48,7 @@ pipeline {
               git config user.email "roysupriyoroy@gmail.com"
                     git config user.name "Supriyo Roy"
                     BUILD_NUMBER=${BUILD_NUMBER}
+                    ls -lrth
                     sed -i "s/tagname/${BUILD_NUMBER}/g" /argo-config/deployment.yml
                     git add /argo-config/deployment.yml
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
