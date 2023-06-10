@@ -16,6 +16,6 @@ spec:
    spec:
     containers:
      - name: spring-boot-app
-       image: supriyohub/ci-cd-jenkins-docker-argocd-k8s:72
+       image: supriyohub/ci-cd-jenkins-docker-argocd-k8s:73
        ports:
         - containerPort: 8080
